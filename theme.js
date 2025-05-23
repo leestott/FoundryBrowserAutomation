@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Initialize animations
   initializeAnimations();
+  
+  // Update button styling for the active theme
+  updateButtonsForTheme();
 });
 
 // Initialize theme based on system preference or stored setting
@@ -20,8 +23,10 @@ function initializeTheme() {
   // Set initial theme
   if (storedTheme === 'dark' || (storedTheme === null && systemPrefersDark)) {
     document.body.classList.add('dark-mode');
+    document.body.classList.remove('light-mode');
   } else {
     document.body.classList.remove('dark-mode');
+    document.body.classList.add('light-mode');
   }
   
   // Add theme toggle to the UI (if not already present)
@@ -32,8 +37,14 @@ function initializeTheme() {
     if (localStorage.getItem('theme') === null) { // Only auto-switch if user hasn't manually set a preference
       if (e.matches) {
         document.body.classList.add('dark-mode');
+        document.body.classList.remove('light-mode');
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) themeToggle.innerHTML = '☀️';
       } else {
         document.body.classList.remove('dark-mode');
+        document.body.classList.add('light-mode');
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) themeToggle.innerHTML = '🌙';
       }
     }
   });
@@ -46,8 +57,8 @@ function createThemeToggle() {
     return;
   }
   
-  const header = document.querySelector('header');
-  if (!header) return;
+  const container = document.querySelector('.container');
+  if (!container) return;
   
   const themeToggle = document.createElement('button');
   themeToggle.id = 'theme-toggle';
@@ -55,31 +66,11 @@ function createThemeToggle() {
   themeToggle.setAttribute('aria-label', 'Toggle dark/light theme');
   themeToggle.innerHTML = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
   
-  // Style the toggle button
-  themeToggle.style.background = 'transparent';
-  themeToggle.style.border = 'none';
-  themeToggle.style.fontSize = '1.2rem';
-  themeToggle.style.cursor = 'pointer';
-  themeToggle.style.marginLeft = '15px';
-  themeToggle.style.opacity = '0.8';
-  themeToggle.style.transition = 'all 0.3s ease';
-  
-  // Add hover effect
-  themeToggle.addEventListener('mouseover', () => {
-    themeToggle.style.opacity = '1';
-    themeToggle.style.transform = 'scale(1.1)';
-  });
-  
-  themeToggle.addEventListener('mouseout', () => {
-    themeToggle.style.opacity = '0.8';
-    themeToggle.style.transform = 'scale(1)';
-  });
-  
   // Add click handler to toggle theme
   themeToggle.addEventListener('click', toggleTheme);
   
-  // Add to the UI
-  header.appendChild(themeToggle);
+  // Add to the UI at the top of the container
+  container.prepend(themeToggle);
 }
 
 // Toggle between dark and light themes
@@ -89,10 +80,12 @@ function toggleTheme() {
   
   if (isDarkMode) {
     document.body.classList.remove('dark-mode');
+    document.body.classList.add('light-mode');
     localStorage.setItem('theme', 'light');
     if (themeToggle) themeToggle.innerHTML = '🌙';
   } else {
     document.body.classList.add('dark-mode');
+    document.body.classList.remove('light-mode');
     localStorage.setItem('theme', 'dark');
     if (themeToggle) themeToggle.innerHTML = '☀️';
   }
@@ -103,6 +96,10 @@ function toggleTheme() {
 
 // Add a subtle flash animation when changing themes
 function addThemeChangeAnimation() {
+  // Apply transition class to the body
+  document.body.classList.add('theme-transition');
+  
+  // Create transition overlay
   const overlay = document.createElement('div');
   overlay.style.position = 'fixed';
   overlay.style.top = '0';
@@ -117,12 +114,52 @@ function addThemeChangeAnimation() {
   
   // Animate and remove
   setTimeout(() => {
-    overlay.style.transition = 'opacity 1s ease';
+    overlay.style.transition = 'opacity 0.8s ease';
     overlay.style.opacity = '0';
+    
+    // Remove the overlay and class after animation completes
     setTimeout(() => {
-      document.body.removeChild(overlay);
-    }, 1000);
+      if (document.body.contains(overlay)) {
+        document.body.removeChild(overlay);
+      }
+      document.body.classList.remove('theme-transition');
+    }, 800);
   }, 10);
+  
+  // Update all button stylings
+  updateButtonsForTheme();
+}
+
+// Update buttons for theme changes
+function updateButtonsForTheme() {
+  // Find all buttons
+  const buttons = document.querySelectorAll('button:not(.tab):not(.theme-toggle)');
+  
+  // Add appropriate spacing and styling
+  buttons.forEach(button => {
+    // Make sure buttons have proper margin
+    if (window.getComputedStyle(button).margin === '0px') {
+      button.style.margin = '4px';
+    }
+    
+    // Ensure proper transitions
+    if (window.getComputedStyle(button).transition === 'none') {
+      button.style.transition = 'all 0.2s ease';
+    }
+  });
+  
+  // Check if dark mode is active
+  const isDarkMode = document.body.classList.contains('dark-mode');
+  
+  // Apply special styling to improve dark mode appearance if needed
+  if (isDarkMode) {
+    // Ensure buttons have better contrast in dark mode
+    document.querySelectorAll('.secondary-button').forEach(btn => {
+      if (window.getComputedStyle(btn).backgroundColor === 'transparent') {
+        btn.style.backgroundColor = '#333';
+      }
+    });
+  }
 }
 
 // Initialize animations for UI elements

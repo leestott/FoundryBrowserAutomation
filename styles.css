@@ -120,8 +120,11 @@ h3 {
 
 .button-group {
     display: flex;
-    gap: 12px;
+    gap: 16px;
     flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-items: center;
 }
 
 .primary-button {
@@ -130,16 +133,19 @@ h3 {
     border: none;
     cursor: pointer;
     transition: all 0.2s ease;
-    padding: 10px 16px;
-    border-radius: 4px;
+    padding: 12px 18px;
+    border-radius: 6px;
     font-weight: 500;
     font-size: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin: 4px;
+    outline: none;
 }
 
 .primary-button:hover {
     background-color: #106ebe;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .primary-button:active {
@@ -159,17 +165,20 @@ h3 {
     border: 1px solid #d1d1d1;
     cursor: pointer;
     transition: all 0.2s ease;
-    padding: 9px 15px;
-    border-radius: 4px;
+    padding: 12px 18px;
+    border-radius: 6px;
     font-weight: 500;
     font-size: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin: 4px;
+    outline: none;
 }
 
 .secondary-button:hover {
     background-color: #edebe9;
     border-color: #c8c6c4;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
 .secondary-button:active {
@@ -190,16 +199,19 @@ h3 {
     border: none;
     cursor: pointer;
     transition: all 0.2s ease;
-    padding: 10px 16px;
-    border-radius: 4px;
+    padding: 12px 18px;
+    border-radius: 6px;
     font-weight: 500;
     font-size: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin: 4px;
+    outline: none;
 }
 
 .action-button:hover {
     background-color: #5000d1;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .action-button:active {
@@ -210,10 +222,20 @@ h3 {
     background-color: #d83b01;
     color: white;
     border: none;
+    padding: 12px 18px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin: 4px;
+    outline: none;
 }
 
 .warning-button:hover {
     background-color: #c43601;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 #submit-mcp-prompt {
@@ -246,9 +268,10 @@ h3 {
 
 .browser-controls {
     display: flex;
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 16px;
+    margin-bottom: 25px;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 select, textarea, button {
@@ -569,63 +592,237 @@ code {
 
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
-    body.dark-mode {
+    /* This media query now only sets dark mode by default if system prefers dark */
+    body:not(.light-mode) {
         background-color: #1e1e1e;
         color: #f1f1f1;
     }
+}
 
-    body.dark-mode h1 {
-        color: #4cc2ff;
-    }
+/* Dark mode styles - applied when .dark-mode class is present */
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #f1f1f1;
+}
 
-    body.dark-mode h2 {
-        color: #e1e1e1;
-        border-bottom-color: #333;
-    }
+body.dark-mode h1 {
+    color: #4cc2ff;
+}
 
-    body.dark-mode .model-section,
-    body.dark-mode .prompt-section,
-    body.dark-mode .response-section,
-    body.dark-mode .browser-section,
-    body.dark-mode .log-section {
-        background-color: #252525;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
+body.dark-mode h2 {
+    color: #e1e1e1;
+    border-bottom-color: #333;
+}
 
-    body.dark-mode select,
-    body.dark-mode textarea {
-        background-color: #333;
-        border-color: #444;
-        color: #f1f1f1;
-    }
+body.dark-mode h3 {
+    color: #4cc2ff;
+}
 
-    body.dark-mode .response-container {
-        background-color: #2d2d2d;
-        border-color: #444;
-        color: #f1f1f1;
-    }
+body.dark-mode .card,
+body.dark-mode .model-section,
+body.dark-mode .prompt-section,
+body.dark-mode .response-section,
+body.dark-mode .browser-section,
+body.dark-mode .log-section {
+    background-color: #252525;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
 
-    body.dark-mode .placeholder {
-        color: #aaa;
-    }
+body.dark-mode .card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
 
-    body.dark-mode .secondary-button {
-        background-color: #333;
-        color: #f1f1f1;
-        border-color: #555;
-    }
+body.dark-mode select,
+body.dark-mode textarea,
+body.dark-mode #mcp-prompt-input {
+    background-color: #333;
+    border-color: #444;
+    color: #f1f1f1;
+}
 
-    body.dark-mode .secondary-button:hover {
-        background-color: #444;
-        border-color: #666;
-    }
+body.dark-mode select:focus,
+body.dark-mode textarea:focus,
+body.dark-mode #mcp-prompt-input:focus {
+    border-color: #4cc2ff;
+    box-shadow: 0 0 0 2px rgba(76, 194, 255, 0.2);
+}
 
-    body.dark-mode pre, 
-    body.dark-mode code {
-        background-color: #333;
-        border-color: #555;
-        color: #f1f1f1;
-    }
+body.dark-mode .response-container {
+    background-color: #2d2d2d;
+    border-color: #444;
+    color: #f1f1f1;
+}
+
+body.dark-mode .placeholder {
+    color: #aaa;
+}
+
+body.dark-mode .primary-button {
+    background-color: #0078d4;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .primary-button:hover {
+    background-color: #2b88d8;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .secondary-button {
+    background-color: #333;
+    color: #f1f1f1;
+    border-color: #555;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .secondary-button:hover {
+    background-color: #444;
+    border-color: #666;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .action-button {
+    background-color: #7928ca;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .action-button:hover {
+    background-color: #9146ff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .warning-button {
+    background-color: #d83b01;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .warning-button:hover {
+    background-color: #e55c2d;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Enhanced card styling for dark mode */
+body.dark-mode .card {
+    background-color: #252525;
+    border: 1px solid #333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-mode .card:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+/* Improved container styling for dark mode */
+body.dark-mode .section-header {
+    border-bottom-color: #333;
+}
+
+body.dark-mode .section-header i {
+    color: #4cc2ff;
+}
+
+/* Improved form elements for dark mode */
+body.dark-mode select,
+body.dark-mode textarea,
+body.dark-mode input {
+    background-color: #333;
+    color: #f1f1f1;
+    border: 1px solid #444;
+}
+
+body.dark-mode select:focus,
+body.dark-mode textarea:focus,
+body.dark-mode input:focus {
+    border-color: #4cc2ff;
+    box-shadow: 0 0 0 2px rgba(76, 194, 255, 0.2);
+    outline: none;
+}
+
+body.dark-mode select option {
+    background-color: #333;
+    color: #f1f1f1;
+}
+
+/* MCP section styling for dark mode */
+body.dark-mode .mcp-section {
+    border-top-color: #333;
+}
+
+body.dark-mode #mcp-prompt-input {
+    background-color: #333;
+    color: #f1f1f1;
+    border-color: #444;
+}
+
+body.dark-mode #mcp-prompt-input:focus {
+    border-color: #4cc2ff;
+    box-shadow: 0 0 0 2px rgba(76, 194, 255, 0.2);
+}
+
+/* Tabs styling for dark mode */
+body.dark-mode .tabs {
+    border-bottom-color: #333;
+}
+
+body.dark-mode .tab {
+    color: #aaa;
+}
+
+body.dark-mode .tab:hover {
+    color: #4cc2ff;
+}
+
+body.dark-mode .tab.active {
+    color: #4cc2ff;
+}
+
+body.dark-mode .tab.active::after {
+    background-color: #4cc2ff;
+}
+
+/* Screenshot container in dark mode */
+body.dark-mode .screenshot-container {
+    background-color: #222;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+body.dark-mode .screenshot {
+    border-color: #444;
+}
+
+/* Improved theme toggle button styling */
+.theme-toggle {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.4rem;
+    background-color: transparent;
+    border: none;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+body.dark-mode .theme-toggle {
+    background-color: #333;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .theme-toggle:hover {
+    background-color: #444;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 /* Footer styling */
@@ -700,4 +897,78 @@ body.dark-mode .error-message {
 
 body.dark-mode .error-message h4 {
     color: #ff6b6b;
+}
+
+/* Fix for response container in dark mode with stronger specificity */
+body.dark-mode #ai-response.response-container,
+body.dark-mode .response-section .response-container {
+    background-color: #2d2d2d !important;
+    color: #f1f1f1 !important;
+    border-color: #444 !important;
+}
+
+body.dark-mode #ai-response.response-container p,
+body.dark-mode .response-section .response-container p {
+    color: #f1f1f1 !important;
+}
+
+body.dark-mode #ai-response.response-container .placeholder,
+body.dark-mode .response-section .response-container .placeholder {
+    color: #aaa !important;
+}
+
+/* Enhanced dark mode support for dynamic content in response containers */
+body.dark-mode #ai-response.response-container * {
+    color: #f1f1f1;
+}
+
+body.dark-mode #ai-response.response-container a {
+    color: #4cc2ff;
+}
+
+body.dark-mode #ai-response.response-container code,
+body.dark-mode #ai-response.response-container pre {
+    background-color: #333;
+    color: #f0f0f0;
+    border-color: #444;
+}
+
+/* Style for dark mode pre elements */
+.dark-mode-pre {
+    background-color: #333 !important;
+    color: #f1f1f1 !important;
+    border-color: #444 !important;
+    padding: 15px;
+    border-radius: 4px;
+    line-height: 1.5;
+}
+
+/* Ensure response container with nested pre elements displays correctly in dark mode */
+body.dark-mode .response-container pre {
+    background-color: #333 !important;
+    color: #f1f1f1 !important;
+    border: 1px solid #444;
+}
+
+/* Fix for pre elements inside AI response container in dark mode */
+body.dark-mode #ai-response pre {
+    background-color: #333 !important;
+    color: #f1f1f1 !important;
+    border-color: #444 !important;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Override any default pre styling that might interfere */
+body.dark-mode pre {
+    background-color: #333;
+    border-color: #444;
+    color: #f1f1f1;
+}
+
+/* Fix for white text on white background in AI responses */
+body.dark-mode #ai-response {
+    background-color: #2d2d2d !important;
+    color: #f1f1f1 !important;
+    border-color: #444 !important;
 }

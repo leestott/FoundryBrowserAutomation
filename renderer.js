@@ -627,7 +627,11 @@ function setAutomationState(running) {
 }
 
 function displayAiResponse(response) {
-  aiResponse.innerHTML = `<pre>${response}</pre>`;
+  // Add a dark-mode-friendly class to pre elements for proper styling
+  const isDarkMode = document.body.classList.contains('dark-mode');
+  const darkModeClass = isDarkMode ? 'dark-mode-pre' : '';
+  
+  aiResponse.innerHTML = `<pre class="${darkModeClass}">${response}</pre>`;
 }
 
 function log(message, type = 'info') {

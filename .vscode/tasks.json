@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Start Foundry Browser Automation App",
+			"type": "shell",
+			"command": "npm start",
+			"group": "test",
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}

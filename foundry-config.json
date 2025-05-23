@@ -1,0 +1,11 @@
+{
+  "foundryPort": null,
+  "baseUrl": null,
+  "lastChecked": "2025-05-23T07:22:40.671Z",
+  "serviceDetected": false,
+  "possiblePorts": [
+    5000,
+    8080,
+    1234
+  ]
+}

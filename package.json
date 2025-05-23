@@ -1,0 +1,56 @@
+{
+  "name": "foundry-electron-app",
+  "version": "1.0.0",
+  "description": "Electron App with Microsoft Foundry Local SDK and Playwright MCP",
+  "main": "main.js",
+  "type": "commonjs",
+  "scripts": {
+    "setup": "node setup.js",
+    "start": "npm run setup && electron .",
+    "test": "node test-automation.js",
+    "test:browser": "node test-automation.js",
+    "test:mcp": "node tests/mcp-test.js",
+    "test:connection": "node test-connection.js",
+    "diagnose:mcp": "node find-mcp.js",
+    "fix:mcp": "npm uninstall @playwright/mcp && npm install @playwright/mcp@latest",
+    "package": "electron-builder"
+  },
+  "keywords": [
+    "electron",
+    "foundry",
+    "ai",
+    "playwright",
+    "mcp"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^29.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "dependencies": {
+    "@playwright/mcp": "^0.0.26",
+    "axios": "^1.6.7",
+    "electron-log": "^5.1.0",
+    "openai": "^4.28.0",
+    "playwright": "^1.52.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "build": {
+    "appId": "com.foundry.electron",
+    "productName": "Foundry Electron App",
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
+    },
+    "directories": {
+      "output": "dist"
+    }
+  }
+}

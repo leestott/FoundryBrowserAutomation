@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Foundry Local with Browser Automation</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./animation.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>
+                Foundry Local with Browser Automation
+                <div class="status-indicator">
+                    <div id="foundry-status-indicator" class="status-offline"></div>
+                    <span id="foundry-status-text">Offline</span>
+                </div>
+            </h1>
+        </header>
+        
+        <div class="tabs">
+            <button class="tab active" data-tab="ai-tab">AI Model</button>
+            <button class="tab" data-tab="browser-tab">Browser Automation</button>
+            <button class="tab" data-tab="logs-tab">Logs</button>
+        </div>
+        
+        <div class="tab-content active" id="ai-tab">
+            <div class="model-section card">
+                <div class="section-header">
+                    <h2>AI Model Selection</h2>
+                </div>
+                <select id="model-select">
+                    <option value="phi-4-mini">phi-4-mini</option>
+                    <option value="phi-4">phi-4</option>
+                    <option value="qwen2.5-14b">qwen2.5-14b</option>
+                </select>
+            </div>
+            
+            <div class="prompt-section card">
+                <div class="section-header">
+                    <h2>Prompt</h2>
+                </div>
+                <textarea id="prompt-input" placeholder="Enter your prompt here..."></textarea>
+                <button id="submit-prompt" class="primary-button">Submit</button>
+            </div>
+            
+            <div class="response-section card">
+                <div class="section-header">
+                    <h2>AI Response</h2>
+                </div>
+                <div id="ai-response" class="response-container">
+                    <p class="placeholder">AI response will appear here...</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="browser-tab">
+            <div class="browser-section card">
+                <div class="section-header">
+                    <h2>Browser Automation</h2>
+                </div>
+                
+                <div class="browser-controls">
+                    <button id="start-automation" class="primary-button">Start Demo Automation</button>
+                    <button id="stop-automation" class="warning-button">Stop Browser Automation</button>
+                </div>
+                
+                <div class="mcp-section">
+                    <h3>Playwright MCP Browser Control</h3>
+                    <textarea id="mcp-prompt-input" placeholder="Enter a browser automation prompt (e.g. 'Go to microsoft.com and take a screenshot')"></textarea>
+                    
+                    <div class="button-group">
+                        <button id="submit-mcp-prompt" class="primary-button">Run MCP Prompt</button>
+                        <button id="run-mcp-test" class="action-button">Run MCP Test</button>
+                        <button id="diagnose-mcp" class="secondary-button">Diagnose MCP</button>
+                    </div>
+                    
+                    <div id="automation-results" class="automation-results">
+                        <!-- Results will be inserted here -->
+                    </div>
+                    
+                    <div id="screenshot-container" class="screenshot-container" style="display: none;">
+                        <h4>Screenshot</h4>
+                        <img id="screenshot" class="screenshot" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="logs-tab">
+            <div class="log-section card">
+                <div class="section-header">
+                    <h2>Logs</h2>
+                    <button id="clear-logs" class="secondary-button" style="margin-left: auto;">Clear Logs</button>
+                </div>
+                <div id="log-output" class="log-container">
+                    <p class="placeholder">Log output will appear here...</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="footer">
+            <p>Foundry Local with Browser Automation Demo</p>
+            <p class="version">Version 1.0.0</p>
+        </footer>
+    </div>
+    
+    <script src="./theme.js"></script>
+    <script src="./renderer.js"></script>
+</body>
+</html>
